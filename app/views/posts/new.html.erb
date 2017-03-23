@@ -1,0 +1,12 @@
+<div id="new-jumbotron" class="jumbotron">
+  <h1>New Post</h1>
+  <p>create a new post</p>
+</div>
+<div class="container">
+    </div><%= bootstrap_form_for(@post) do |f| %>
+    <%= f.text_field :title %>
+    <%= f.text_area :body %>
+    <%= f.select :published, [[true, "Yes"], [false, "No"]] %>
+    <%= f.submit "Create New Post" %>
+    <% end %>
+</div>

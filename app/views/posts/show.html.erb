@@ -1,0 +1,27 @@
+<p>
+  <div class="page-header">
+  <h1><%= @post.title %><small><%= @post.created_at.strftime("    %m/%d/%Y    ")%><br>
+  <%= link_to @post.user.last_name, "#"%></small></h1>
+</div>
+</p>
+
+<p>
+  <div class="well well-sm"><%= @post.body %></div>
+</p>
+
+<div class="container">
+    <%= bootstrap_form_for @comment, url: comment_post_path(@post) do |f| %>
+        <%= f.text_area :body, label: "write your comment here" %>
+        <%= f.submit "Create New Comment", class: "btn btn-primary" %>
+    <% end %>
+</div>
+<hr/>
+<% @post.comments.each do |comment| %>
+<div class="list-group">
+  <a href="#" class="list-group-item">
+  <h4 class="list-group-item-heading"><%= comment.body %></h4>
+  <p class="list-group-item-text pull-right"><%= "#{distance_of_time_in_words(Time.now, comment.created_at)} ago" %></p>
+  <p class="list-group-item-text"><%= comment.user.email %></p>
+  </a>
+</div>
+<% end %>
